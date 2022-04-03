@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
-import { IUser, User, userValidationSchema } from '~/models/User.model';
+import { IUser, User, userValidationSchema } from '~/modules/auth/models/User.model';
+import { withAuth } from '~/server/middlewares/withAuth';
 import { withValidate } from '~/server/middlewares/withValidate';
 import { TResponse, TRequest } from '~/server/types/apiTypes';
 
-export default withValidate(userValidationSchema, async (
+export default withAuth(withValidate(userValidationSchema, async (
   req: TRequest<IUser>,
   res: TResponse,
 ) => {
@@ -29,4 +30,4 @@ export default withValidate(userValidationSchema, async (
       res.status(405).json({ error: { message: 'Method not allowed' } });
     }
   }
-});
+}));

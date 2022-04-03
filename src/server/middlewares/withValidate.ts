@@ -13,5 +13,5 @@ export const withValidate = (
   } catch (error) {
     return res.status(400).json(error);
   }
-  await handler(req, res);
+  return handler(req, res);
 };

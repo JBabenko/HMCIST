@@ -6,7 +6,7 @@ require('dotenv').config();
 const ssrPort = Number(process.env.SSR_PORT) || 3000;
 const ssrHost = process.env.SSR_HOST || 'localhost';
 const dev = process.env.NODE_ENV !== 'production';
-const app = nextApp({ dev });
+const app = nextApp({ dev, hostname: ssrHost, port: ssrPort });
 const dbUrl = process.env.DATABASE_URL;
 
 const runApp = async () => {

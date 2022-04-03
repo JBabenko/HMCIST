@@ -1,10 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { IUser, User, userValidationSchema } from '~/models/User.model';
+import { IUser, User, userValidationSchema } from '~/modules/auth/models/User.model';
 import { withValidate } from '~/server/middlewares/withValidate';
 import { TResponse, TRequest } from '~/server/types/apiTypes';
-
-require('dotenv').config();
 
 export default withValidate(userValidationSchema, async (
   req: TRequest<Pick<IUser, 'email' | 'password'>>,
